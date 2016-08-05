@@ -14,6 +14,7 @@
 		<class>br.upf.casca.ads.beans.classes.AlunosTurma</class>
 		<class>br.upf.casca.ads.beans.classes.Diretor</class>
 		<class>br.upf.casca.ads.beans.classes.Secretaria</class>
+		<class>br.upf.casca.ads.beans.classes.PergRespQuest</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/infoschool"/>
 			<property name="javax.persistence.jdbc.user" value="postgres"/>

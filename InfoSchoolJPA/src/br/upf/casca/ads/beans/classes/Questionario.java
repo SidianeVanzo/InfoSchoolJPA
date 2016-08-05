@@ -33,14 +33,6 @@ public class Questionario implements Serializable {
 	@TipoQuestionarioValido(message="O Tipo Questionário deve ser válido", opcoes={"Durante o Curso", "Final do Curso"})
 	private String tipoQuestionario;
 	
-	@Length(max=200, message="O tamanho máximo da pergunta deve ser de {max} caracteres!")
-	@NotEmpty(message="A pergunta não pode estar vazia!")
-	private String pergunta;
-	
-	@Length(max=600, message="O tamanho máximo da resposta deve ser de {max} caracteres!")
-	@NotEmpty(message="A resposta não pode estar vazia!")
-	private String resposta;
-	
 	@ManyToOne(optional = false)
 	@NotNull(message="O Professor nao pode estar vazio")
 	private Professor professor;
@@ -52,6 +44,10 @@ public class Questionario implements Serializable {
 	@ManyToOne(optional = false)
 	@NotNull(message="O Aluno nao pode estar vazio")
 	private Alunos aluno;
+	
+	@ManyToOne(optional = false)
+	@NotNull(message="As perguntas e respostas não podem estar vazias nao pode estar vazio")
+	private PergRespQuest pergRespQuest;
 	private static final long serialVersionUID = 1L;
 
 	public Questionario() {
@@ -63,16 +59,12 @@ public class Questionario implements Serializable {
 		this.id = id;
 	}
 
-	public Questionario(Integer id, String tipoQuestionario, String pergunta, String resposta, Professor professor,
-			Curso curso, Alunos aluno) {
-		super();
-		this.id = id;
-		this.tipoQuestionario = tipoQuestionario;
-		this.pergunta = pergunta;
-		this.resposta = resposta;
-		this.professor = professor;
-		this.curso = curso;
-		this.aluno = aluno;
+	public PergRespQuest getPergRespQuest() {
+		return pergRespQuest;
+	}
+
+	public void setPergRespQuest(PergRespQuest pergRespQuest) {
+		this.pergRespQuest = pergRespQuest;
 	}
 
 	public Integer getId() {
@@ -89,20 +81,7 @@ public class Questionario implements Serializable {
 	public void setTipoQuestionario(String tipoQuestionario) {
 		this.tipoQuestionario = tipoQuestionario;
 	}   
-	public String getPergunta() {
-		return this.pergunta;
-	}
-
-	public void setPergunta(String pergunta) {
-		this.pergunta = pergunta;
-	}   
-	public String getResposta() {
-		return this.resposta;
-	}
-
-	public void setResposta(String resposta) {
-		this.resposta = resposta;
-	}   
+   
 	public Professor getProfessor() {
 		return this.professor;
 	}
@@ -123,6 +102,17 @@ public class Questionario implements Serializable {
 
 	public void setAluno(Alunos aluno) {
 		this.aluno = aluno;
+	}
+
+	public Questionario(Integer id, String tipoQuestionario, Professor professor, Curso curso, Alunos aluno,
+			PergRespQuest pergRespQuest) {
+		super();
+		this.id = id;
+		this.tipoQuestionario = tipoQuestionario;
+		this.professor = professor;
+		this.curso = curso;
+		this.aluno = aluno;
+		this.pergRespQuest = pergRespQuest;
 	}
    
 }
