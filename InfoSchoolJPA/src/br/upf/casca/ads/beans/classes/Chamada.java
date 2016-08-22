@@ -29,9 +29,13 @@ public class Chamada implements Serializable {
 	@SequenceGenerator(name = "ChamadaId", sequenceName = "ChamadaId", allocationSize = 1)
 	private Integer id;
 	
-	@Length(max=10, message="O tamanho máximo do horário é {max} caracteres")
-	@NotEmpty(message="O horário não pode estar vazio!")
-	private String horario;
+	@NotNull(message="O horário de inicio não pode estar vazio!")
+	@Temporal(TemporalType.TIME)
+	private Date horarioInicio;
+	
+	@NotNull(message="O horário de fim não pode estar vazio!")
+	@Temporal(TemporalType.TIME)
+	private Date horarioFim;
 	
 	@NotNull(message="A data das aulas nao deve ser nula")
 	@Temporal(DATE)
@@ -70,19 +74,7 @@ public class Chamada implements Serializable {
 		this.id = id;
 	}
 
-	public Chamada(Integer id, String horario, Date datasAulas, String conteudoAula, String provas,
-			Double notasProvas, Double notaRecuperacao, String comparecimentoAula, Turma turma) {
-		super();
-		this.id = id;
-		this.horario = horario;
-		this.datasAulas = datasAulas;
-		this.conteudoAula = conteudoAula;
-		this.provas = provas;
-		this.notasProvas = notasProvas;
-		this.notaRecuperacao = notaRecuperacao;
-		this.comparecimentoAula = comparecimentoAula;
-		this.turma = turma;
-	}
+
 
 	public Integer getId() {
 		return this.id;
@@ -90,13 +82,6 @@ public class Chamada implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}   
-	public String getHorario() {
-		return this.horario;
-	}
-
-	public void setHorario(String horario) {
-		this.horario = horario;
 	}   
 	public Date getDatasAulas() {
 		return this.datasAulas;
@@ -146,4 +131,39 @@ public class Chamada implements Serializable {
 	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
+
+
+	public Date getHorarioFim() {
+		return horarioFim;
+	}
+
+	public void setHorarioFim(Date horarioFim) {
+		this.horarioFim = horarioFim;
+	}
+
+	public Date getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public void setHorarioInicio(Date horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+	public Chamada(Integer id, Date horarioInicio, Date horarioFim, Date datasAulas, String conteudoAula, String provas,
+			Double notasProvas, Double notaRecuperacao, String comparecimentoAula, Turma turma) {
+		super();
+		this.id = id;
+		this.horarioInicio = horarioInicio;
+		this.horarioFim = horarioFim;
+		this.datasAulas = datasAulas;
+		this.conteudoAula = conteudoAula;
+		this.provas = provas;
+		this.notasProvas = notasProvas;
+		this.notaRecuperacao = notaRecuperacao;
+		this.comparecimentoAula = comparecimentoAula;
+		this.turma = turma;
+	}
+
+	
+	
 }

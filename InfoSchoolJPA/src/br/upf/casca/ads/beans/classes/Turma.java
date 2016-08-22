@@ -40,8 +40,9 @@ public class Turma implements Serializable {
 	private Boolean sextaFeira;
 	private Boolean sabado;
 	
-	
-	private String[] turno;
+	private Boolean manha;
+	private Boolean tarde;
+	private Boolean noite;
 	
 	@ManyToOne
 	@NotNull(message="O Curso nao pode estar vazio")
@@ -78,24 +79,6 @@ public class Turma implements Serializable {
 		this.id = id;
 	}   
 
-	public String[] getTurno() {
-		return this.turno;
-	}
-	
-	public String getTurnoString() {
-		String ret = "", v = "";
-		if (turno != null){
-			for(int i=0; i<turno.length; i++){
-	          ret += v+turno[i];
-			  v = ", ";		
-			}
-		}
-		return ret;
-	}	
-
-	public void setTurno(String[] turno) {
-		this.turno = turno;
-	}   
 	public Curso getCurso() {
 		return this.curso;
 	}
@@ -185,9 +168,33 @@ public class Turma implements Serializable {
 		this.sabado = sabado;
 	}
 
+	public Boolean getManha() {
+		return manha;
+	}
+
+	public void setManha(Boolean manha) {
+		this.manha = manha;
+	}
+
+	public Boolean getTarde() {
+		return tarde;
+	}
+
+	public void setTarde(Boolean tarde) {
+		this.tarde = tarde;
+	}
+
+	public Boolean getNoite() {
+		return noite;
+	}
+
+	public void setNoite(Boolean noite) {
+		this.noite = noite;
+	}
+
 	public Turma(Integer id, String nome, Boolean segundaFeira, Boolean tercaFeira, Boolean quartaFeira,
-			Boolean quintaFeira, Boolean sextaFeira, Boolean sabado, String[] turno, Curso curso, TipoTurma tipoTurma,
-			Professor professor, List<AlunosTurma> alunosTurma) {
+			Boolean quintaFeira, Boolean sextaFeira, Boolean sabado, Boolean manha, Boolean tarde, Boolean noite,
+			Curso curso, TipoTurma tipoTurma, Professor professor, List<AlunosTurma> alunosTurma) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -197,11 +204,14 @@ public class Turma implements Serializable {
 		this.quintaFeira = quintaFeira;
 		this.sextaFeira = sextaFeira;
 		this.sabado = sabado;
-		this.turno = turno;
+		this.manha = manha;
+		this.tarde = tarde;
+		this.noite = noite;
 		this.curso = curso;
 		this.tipoTurma = tipoTurma;
 		this.professor = professor;
 		this.alunosTurma = alunosTurma;
 	}
+
 	
 }
