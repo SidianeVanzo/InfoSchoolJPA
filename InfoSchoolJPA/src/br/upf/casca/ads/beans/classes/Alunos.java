@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
 
@@ -21,7 +22,7 @@ import static javax.persistence.TemporalType.DATE;
  *
  */
 @Entity
-
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"email"})})
 public class Alunos implements Serializable {
 
 	   
@@ -56,8 +57,8 @@ public class Alunos implements Serializable {
 	@Length(max=60, message="O tamanho máximo do endereco deve ser {max}")
 	private String endereco;
 	
-	@Length(max=80, message="O tamanho máximo do email é {max} caracteres")
-	@Email
+	@Length(max=80, message="O tamanho máximo do{max email é } caracteres")
+	@Email	
 	private String email;
 	
 	@ManyToOne(optional = false)
@@ -80,9 +81,6 @@ public class Alunos implements Serializable {
 		super();
 		this.id = id;
 	}
-
-
-
 
 	public Integer getId() {
 		return this.id;
@@ -126,6 +124,7 @@ public class Alunos implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}   
+	
 	public String getEmail() {
 		return this.email;
 	}
@@ -133,6 +132,7 @@ public class Alunos implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}   
+	
   
 	public Cidade getCidade() {
 		return this.cidade;
@@ -173,6 +173,12 @@ public class Alunos implements Serializable {
 		this.email = email;
 		this.cidade = cidade;
 		this.tipoAluno = tipoAluno;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getEmail();
 	}
 
    

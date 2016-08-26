@@ -67,6 +67,16 @@ public class Secretaria extends Pessoa implements Serializable{
 		this.formacao = formacao;
 	}
 
+	public Secretaria(Integer id, String nome, String telefone, String email, String endereco, String usuario,
+			String senha, String tipo, Date horarioInicioExpediente, Date horarioFimExpediente, String formacao) {
+		super(id, nome, telefone, email, endereco, usuario, senha, tipo);
+		tipo = "SECRETARIA";
+		this.horarioInicioExpediente = horarioInicioExpediente;
+		this.horarioFimExpediente = horarioFimExpediente;
+		this.formacao = formacao;
+	}
+	
+	
 	
 	
 }

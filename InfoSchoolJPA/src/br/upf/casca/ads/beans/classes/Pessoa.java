@@ -12,6 +12,8 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import br.upf.casca.ads.beans.constraints.StringOptionsValid;
+
 /**
  * Entity implementation class for Entity: Pessoa
  *
@@ -50,6 +52,10 @@ public abstract class Pessoa implements Serializable {
 	@NotEmpty(message="A senha não pode estar vazia!")
 	private String senha;
 	
+	@Length(max=30)	
+	@StringOptionsValid(message="Opção inválida no tipo!", opcoes={"ADMINISTRADOR", "SECRETARIA", "DIRETOR", "PROFESSOR"})
+	private String tipo;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Pessoa() {
@@ -61,17 +67,6 @@ public abstract class Pessoa implements Serializable {
 		this.id = id;
 	}
 
-	public Pessoa(Integer id, String nome, String telefone, String email, String endereco, String usuario, String senha) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.email = email;
-		this.endereco = endereco;
-		this.usuario = usuario;
-		this.senha = senha;
-	}
-	
 	public Integer getId() {
 		return this.id;
 	}
@@ -123,6 +118,27 @@ public abstract class Pessoa implements Serializable {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public Pessoa(Integer id, String nome, String telefone, String email, String endereco, String usuario, String senha,
+			String tipo) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.email = email;
+		this.endereco = endereco;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.tipo = tipo;
 	}
    
 	

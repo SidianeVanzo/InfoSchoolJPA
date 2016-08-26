@@ -126,6 +126,7 @@ public class Professor extends Pessoa implements Serializable {
 	public Professor(List<Curso> cursosHabilitados, Boolean manha, Boolean tarde, Boolean noite, Boolean segundaFeira,
 			Boolean tercaFeira, Boolean quartaFeira, Boolean quintaFeira, Boolean sextaFeira, Boolean sabado) {
 		super();
+		
 		this.cursosHabilitados = cursosHabilitados;
 		this.manha = manha;
 		this.tarde = tarde;
@@ -138,6 +139,25 @@ public class Professor extends Pessoa implements Serializable {
 		this.sabado = sabado;
 	}
 
+	public Professor(Integer id, String nome, String telefone, String email, String endereco, String usuario,
+			String senha, String tipo, List<Curso> cursosHabilitados, Boolean manha, Boolean tarde, Boolean noite,
+			Boolean segundaFeira, Boolean tercaFeira, Boolean quartaFeira, Boolean quintaFeira, Boolean sextaFeira,
+			Boolean sabado) {
+		super(id, nome, telefone, email, endereco, usuario, senha, tipo);
+		tipo = "PROFESSOR";
+		this.cursosHabilitados = cursosHabilitados;
+		this.manha = manha;
+		this.tarde = tarde;
+		this.noite = noite;
+		this.segundaFeira = segundaFeira;
+		this.tercaFeira = tercaFeira;
+		this.quartaFeira = quartaFeira;
+		this.quintaFeira = quintaFeira;
+		this.sextaFeira = sextaFeira;
+		this.sabado = sabado;
+	}
+
+	
    
 	
 }

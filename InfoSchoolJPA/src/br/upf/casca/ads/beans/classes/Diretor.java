@@ -39,10 +39,14 @@ public class Diretor extends Pessoa implements Serializable {
 	}
 
 	public Diretor(Integer id, String nome, String telefone, String email, String endereco, String usuario,
-			String senha, String formacao) {
-		super(id, nome, telefone, email, endereco, usuario, senha);
+			String senha, String tipo, String formacao) {
+		super(id, nome, telefone, email, endereco, usuario, senha, tipo);
+		tipo = "DIRETOR";
 		this.formacao = formacao;
 	}
+	
+	
+	
    
 	
 }
