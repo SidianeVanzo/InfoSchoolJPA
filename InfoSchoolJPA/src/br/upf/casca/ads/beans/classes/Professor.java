@@ -144,7 +144,6 @@ public class Professor extends Pessoa implements Serializable {
 			Boolean segundaFeira, Boolean tercaFeira, Boolean quartaFeira, Boolean quintaFeira, Boolean sextaFeira,
 			Boolean sabado) {
 		super(id, nome, telefone, email, endereco, usuario, senha, tipo);
-		tipo = "PROFESSOR";
 		this.cursosHabilitados = cursosHabilitados;
 		this.manha = manha;
 		this.tarde = tarde;

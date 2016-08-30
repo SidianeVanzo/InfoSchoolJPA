@@ -25,7 +25,6 @@ import static javax.persistence.TemporalType.DATE;
 @Table(uniqueConstraints={@UniqueConstraint(columnNames = {"email"})})
 public class Alunos implements Serializable {
 
-	   
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "AlunosId")
 	@SequenceGenerator(name = "AlunosId", sequenceName = "AlunosId", allocationSize = 1)
@@ -58,7 +57,7 @@ public class Alunos implements Serializable {
 	private String endereco;
 	
 	@Length(max=80, message="O tamanho máximo do{max email é } caracteres")
-	@Email	
+	@Email(message="E-mail inválido!")
 	private String email;
 	
 	@ManyToOne(optional = false)

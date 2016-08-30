@@ -20,9 +20,9 @@
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
 			<property name="javax.persistence.jdbc.password" value="masterkey"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-			<!--Linha para criar o banco de dados 
+			<!--Linha para criar o banco de dados  
 			<property name="hibernate.hbm2ddl.auto" value="create-drop"/> 
-			 -->
+			-->
 		</properties>
 	</persistence-unit>
 </persistence>
