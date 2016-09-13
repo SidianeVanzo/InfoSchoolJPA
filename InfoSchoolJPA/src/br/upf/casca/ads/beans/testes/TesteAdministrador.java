@@ -7,8 +7,6 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 
 import br.upf.casca.ads.beans.classes.Administrador;
-import br.upf.casca.ads.beans.classes.Cidade;
-import br.upf.casca.ads.beans.classes.TipoAluno;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 

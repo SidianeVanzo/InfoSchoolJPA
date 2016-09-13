@@ -3,9 +3,7 @@
 	<persistence-unit name="InfoSchoolJPA" transaction-type="RESOURCE_LOCAL">
 		<class>br.upf.casca.ads.beans.classes.Alunos</class>
 		<class>br.upf.casca.ads.beans.classes.Cidade</class>
-		<class>br.upf.casca.ads.beans.classes.TipoAluno</class>
 		<class>br.upf.casca.ads.beans.classes.Turma</class>
-		<class>br.upf.casca.ads.beans.classes.TipoTurma</class>
 		<class>br.upf.casca.ads.beans.classes.Curso</class>
 		<class>br.upf.casca.ads.beans.classes.Pessoa</class>
 		<class>br.upf.casca.ads.beans.classes.Professor</class>

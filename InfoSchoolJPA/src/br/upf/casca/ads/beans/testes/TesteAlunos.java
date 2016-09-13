@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.Cidade;
-import br.upf.casca.ads.beans.classes.TipoAluno;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 
@@ -30,7 +29,7 @@ public class TesteAlunos {
 		o.setCpf("028.726.240-58");
 		o.setDataNascimento(data);
 		o.setRg("7665432887");
-		o.setTipoAluno(em.find(TipoAluno.class, 1));
+		o.setTipoAluno("EM ESPERA");
 		
 		
 		em.getTransaction().begin();

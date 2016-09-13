@@ -8,7 +8,10 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import br.upf.casca.ads.beans.constraints.StringOptionsValid;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -48,9 +51,10 @@ public class Turma implements Serializable {
 	@NotNull(message="O Curso nao pode estar vazio")
 	private Curso curso;
 	
-	@ManyToOne(optional = false)
-	@NotNull(message="O Tipo Turma nao pode estar vazio")
-	private TipoTurma tipoTurma;
+
+	@Length(max=30)	
+	@StringOptionsValid(message="Opção inválida no tipo da turma!", opcoes={"NORMAL", "PARTICULAR"})
+	private String tipoTurma;
 	
 	@ManyToOne(optional = false)
 	@NotNull(message="O Professor nao pode estar vazio")
@@ -86,14 +90,7 @@ public class Turma implements Serializable {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}   
-	public TipoTurma getTipoTurma() {
-		return this.tipoTurma;
-	}
 
-	public void setTipoTurma(TipoTurma tipoTurma) {
-		this.tipoTurma = tipoTurma;
-	}   
-  
 	public Professor getProfessor() {
 		return this.professor;
 	}
@@ -192,9 +189,17 @@ public class Turma implements Serializable {
 		this.noite = noite;
 	}
 
+	public String getTipoTurma() {
+		return tipoTurma;
+	}
+
+	public void setTipoTurma(String tipoTurma) {
+		this.tipoTurma = tipoTurma;
+	}
+
 	public Turma(Integer id, String nome, Boolean segundaFeira, Boolean tercaFeira, Boolean quartaFeira,
 			Boolean quintaFeira, Boolean sextaFeira, Boolean sabado, Boolean manha, Boolean tarde, Boolean noite,
-			Curso curso, TipoTurma tipoTurma, Professor professor, List<AlunosTurma> alunosTurma) {
+			Curso curso, String tipoTurma, Professor professor, List<AlunosTurma> alunosTurma) {
 		super();
 		this.id = id;
 		this.nome = nome;

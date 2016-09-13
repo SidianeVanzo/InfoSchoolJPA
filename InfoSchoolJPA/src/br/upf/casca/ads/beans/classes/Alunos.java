@@ -14,6 +14,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
+import br.upf.casca.ads.beans.constraints.StringOptionsValid;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
 
@@ -64,17 +66,16 @@ public class Alunos implements Serializable {
 	@NotNull(message="A Cidade nao pode estar vazia")
 	private Cidade cidade;
 	
-	@ManyToOne(optional = false)
-	@NotNull(message="O Tipo Aluno nao pode estar vazio")
-	private TipoAluno tipoAluno;
+	@Length(max=30)	
+	@StringOptionsValid(message="Opção inválida no tipo!", opcoes={"EM ESPERA", "CURSANDO", "CONCLUINTE", "CANCELADO"})
+	private String tipoAluno;
 	
 
 	private static final long serialVersionUID = 1L;
 
 	public Alunos() {
 		super();
-	}  
-	
+	}  	
 	
 	public Alunos(Integer id) {
 		super();
@@ -140,14 +141,6 @@ public class Alunos implements Serializable {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}   
-	public TipoAluno getTipoAluno() {
-		return this.tipoAluno;
-	}
-
-	public void setTipoAluno(TipoAluno tipoAluno) {
-		this.tipoAluno = tipoAluno;
-	}
-
 
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -157,10 +150,9 @@ public class Alunos implements Serializable {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
-
+	
 	public Alunos(Integer id, String nome, String cpf, String rg, String telefone, Date dataNascimento, String endereco,
-			String email, Cidade cidade, TipoAluno tipoAluno) {
+			String email, Cidade cidade, String tipoAluno) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -173,12 +165,14 @@ public class Alunos implements Serializable {
 		this.cidade = cidade;
 		this.tipoAluno = tipoAluno;
 	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return this.getEmail();
+
+	public String getTipoAluno() {
+		return tipoAluno;
 	}
 
-   
+	public void setTipoAluno(String tipoAluno) {
+		this.tipoAluno = tipoAluno;
+	}
+
+  
 }
