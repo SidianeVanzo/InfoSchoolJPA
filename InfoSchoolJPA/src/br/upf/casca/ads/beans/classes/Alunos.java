@@ -24,7 +24,7 @@ import static javax.persistence.TemporalType.DATE;
  *
  */
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"email"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"email", "cpf", "rg"})})
 public class Alunos implements Serializable {
 
 	@Id
