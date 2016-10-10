@@ -20,13 +20,13 @@ public class TesteAdministrador {
 		data.setTime(new Date().getTime()-1);
 			
 		Administrador o = new Administrador();
-		o.setNome("X9");
+		o.setNome("Sandro");
 		o.setTelefone("85858585");
-		o.setEmail("x9@gmail.com");
+		o.setEmail("sandro@gmail.com");
 		o.setEndereco("Rua Secreta");
 		o.setDataCadastro(data);
-		o.setSenha("um");
-		o.setUsuario("um");
+		o.setSenha("123");
+		o.setUsuario("adm");
 		o.setTipo("ADMINISTRADOR");
 		
 		em.getTransaction().begin();
