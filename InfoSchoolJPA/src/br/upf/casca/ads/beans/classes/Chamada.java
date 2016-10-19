@@ -7,13 +7,18 @@ import java.io.Serializable;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * Entity implementation class for Entity: Chamada
@@ -37,14 +42,6 @@ public class Chamada implements Serializable {
 	@Temporal(TemporalType.TIME)
 	private Date horarioFim;
 	
-	@NotNull(message="A data das aulas nao deve ser nula")
-	@Temporal(DATE)
-	private Date datasAulas;
-	
-	@Length(max=500, message="O tamanho máximo do conteudo da aula é {max} caracteres")
-	@NotEmpty(message="O conteudo da aula não pode estar vazio!")
-	private String conteudoAula;
-	
 	@Length(max=20, message="O tamanho máximo da descricao das provas é {max} caracteres")
 	@NotEmpty(message="A descricao das provas não pode estar vazia!")
 	private String provas;
@@ -59,22 +56,23 @@ public class Chamada implements Serializable {
 	@NotEmpty(message="O campo comparecimentoAula não pode estar vazio!")
 	private String comparecimentoAula;
 	
-	@ManyToOne(optional = false)
-	@NotNull(message="O campo Turma nao pode estar vazio")
-	private Turma turma;
+	@OneToMany(cascade = ALL, mappedBy = "descricao", fetch = EAGER)
+	private List<Aula> aula;
 	
-	private static final long serialVersionUID = 1L;
+	@ManyToMany(fetch = EAGER)
+	private List<Alunos> listaAlunos;
+	
+	static final long serialVersionUID = 1L;
 
 	public Chamada() {
 		super();
+		listaAlunos = new ArrayList<>();
 	} 
 	
 	public Chamada(Integer id) {
 		super();
 		this.id = id;
 	}
-
-
 
 	public Integer getId() {
 		return this.id;
@@ -83,20 +81,7 @@ public class Chamada implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}   
-	public Date getDatasAulas() {
-		return this.datasAulas;
-	}
-
-	public void setDatasAulas(Date datasAulas) {
-		this.datasAulas = datasAulas;
-	}   
-	public String getConteudoAula() {
-		return this.conteudoAula;
-	}
-
-	public void setConteudoAula(String conteudoAula) {
-		this.conteudoAula = conteudoAula;
-	}   
+   
 	public String getProvas() {
 		return this.provas;
 	}
@@ -125,13 +110,6 @@ public class Chamada implements Serializable {
 	public void setComparecimentoAula(String comparecimentoAula) {
 		this.comparecimentoAula = comparecimentoAula;
 	}
-	public Turma getTurma() {
-		return turma;
-	}
-	public void setTurma(Turma turma) {
-		this.turma = turma;
-	}
-
 
 	public Date getHorarioFim() {
 		return horarioFim;
@@ -149,21 +127,35 @@ public class Chamada implements Serializable {
 		this.horarioInicio = horarioInicio;
 	}
 
-	public Chamada(Integer id, Date horarioInicio, Date horarioFim, Date datasAulas, String conteudoAula, String provas,
-			Double notasProvas, Double notaRecuperacao, String comparecimentoAula, Turma turma) {
+	public List<Alunos> getListaAlunos() {
+		return listaAlunos;
+	}
+
+	public void setListaAlunos(List<Alunos> listaAlunos) {
+		this.listaAlunos = listaAlunos;
+	}
+
+	public List<Aula> getAula() {
+		return aula;
+	}
+
+	public void setAula(List<Aula> aula) {
+		this.aula = aula;
+	}
+
+	public Chamada(Integer id, Date horarioInicio, Date horarioFim, String provas, Double notasProvas,
+			Double notaRecuperacao, String comparecimentoAula, List<Aula> aula, List<Alunos> listaAlunos) {
 		super();
 		this.id = id;
 		this.horarioInicio = horarioInicio;
 		this.horarioFim = horarioFim;
-		this.datasAulas = datasAulas;
-		this.conteudoAula = conteudoAula;
 		this.provas = provas;
 		this.notasProvas = notasProvas;
 		this.notaRecuperacao = notaRecuperacao;
 		this.comparecimentoAula = comparecimentoAula;
-		this.turma = turma;
+		this.aula = aula;
+		this.listaAlunos = listaAlunos;
 	}
-
 	
 	
 }
