@@ -34,14 +34,6 @@ public class Chamada implements Serializable {
 	@SequenceGenerator(name = "ChamadaId", sequenceName = "ChamadaId", allocationSize = 1)
 	private Integer id;
 	
-	@NotNull(message="O horário de inicio não pode estar vazio!")
-	@Temporal(TemporalType.TIME)
-	private Date horarioInicio;
-	
-	@NotNull(message="O horário de fim não pode estar vazio!")
-	@Temporal(TemporalType.TIME)
-	private Date horarioFim;
-	
 	@Length(max=20, message="O tamanho máximo da descricao das provas é {max} caracteres")
 	@NotEmpty(message="A descricao das provas não pode estar vazia!")
 	private String provas;
@@ -49,24 +41,17 @@ public class Chamada implements Serializable {
 	@NotNull(message="A nota da prova deve ser preenchida")
 	private Double notasProvas;
 	
-	@NotNull(message="A nota da recuperação deve ser preenchida")
-	private Double notaRecuperacao;
-	
 	@Length(max=1, message="O tamanho máximo do comparimento de aulas é {max} caracteres")
 	@NotEmpty(message="O campo comparecimentoAula não pode estar vazio!")
-	private String comparecimentoAula;
+	private Boolean comparecimentoAula;
 	
-	@OneToMany(cascade = ALL, mappedBy = "descricao", fetch = EAGER)
-	private List<Aula> aula;
-	
-	@ManyToMany(fetch = EAGER)
-	private List<Alunos> listaAlunos;
+	@ManyToOne
+	private Alunos aluno;
 	
 	static final long serialVersionUID = 1L;
 
 	public Chamada() {
 		super();
-		listaAlunos = new ArrayList<>();
 	} 
 	
 	public Chamada(Integer id) {
@@ -96,66 +81,34 @@ public class Chamada implements Serializable {
 	public void setNotasProvas(Double notasProvas) {
 		this.notasProvas = notasProvas;
 	}   
-	public Double getNotaRecuperacao() {
-		return this.notaRecuperacao;
+
+
+	public Boolean getComparecimentoAula() {
+		return comparecimentoAula;
 	}
 
-	public void setNotaRecuperacao(Double notaRecuperacao) {
-		this.notaRecuperacao = notaRecuperacao;
-	}   
-	public String getComparecimentoAula() {
-		return this.comparecimentoAula;
-	}
-
-	public void setComparecimentoAula(String comparecimentoAula) {
+	public void setComparecimentoAula(Boolean comparecimentoAula) {
 		this.comparecimentoAula = comparecimentoAula;
 	}
 
-	public Date getHorarioFim() {
-		return horarioFim;
+	public Alunos getAluno() {
+		return aluno;
 	}
 
-	public void setHorarioFim(Date horarioFim) {
-		this.horarioFim = horarioFim;
+	public void setAluno(Alunos aluno) {
+		this.aluno = aluno;
 	}
 
-	public Date getHorarioInicio() {
-		return horarioInicio;
-	}
-
-	public void setHorarioInicio(Date horarioInicio) {
-		this.horarioInicio = horarioInicio;
-	}
-
-	public List<Alunos> getListaAlunos() {
-		return listaAlunos;
-	}
-
-	public void setListaAlunos(List<Alunos> listaAlunos) {
-		this.listaAlunos = listaAlunos;
-	}
-
-	public List<Aula> getAula() {
-		return aula;
-	}
-
-	public void setAula(List<Aula> aula) {
-		this.aula = aula;
-	}
-
-	public Chamada(Integer id, Date horarioInicio, Date horarioFim, String provas, Double notasProvas,
-			Double notaRecuperacao, String comparecimentoAula, List<Aula> aula, List<Alunos> listaAlunos) {
+	public Chamada(Integer id, String provas, Double notasProvas, Boolean comparecimentoAula, Alunos aluno) {
 		super();
 		this.id = id;
-		this.horarioInicio = horarioInicio;
-		this.horarioFim = horarioFim;
 		this.provas = provas;
 		this.notasProvas = notasProvas;
-		this.notaRecuperacao = notaRecuperacao;
 		this.comparecimentoAula = comparecimentoAula;
-		this.aula = aula;
-		this.listaAlunos = listaAlunos;
+		this.aluno = aluno;
 	}
+
+
 	
 	
 }

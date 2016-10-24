@@ -20,7 +20,7 @@ public class TesteAdministrador {
 		data.setTime(new Date().getTime()-1);
 			
 		Administrador o = new Administrador();
-		o.setNome("Sandro");
+		o.setNome("admin");
 		o.setTelefone("85858585");
 		o.setEmail("sandro@gmail.com");
 		o.setEndereco("Rua Secreta");

@@ -4,17 +4,16 @@
 		<class>br.upf.casca.ads.beans.classes.Administrador</class>
 		<class>br.upf.casca.ads.beans.classes.Alunos</class>
 		<class>br.upf.casca.ads.beans.classes.AlunosTurma</class>
+		<class>br.upf.casca.ads.beans.classes.Aula</class>
 		<class>br.upf.casca.ads.beans.classes.Chamada</class>
 		<class>br.upf.casca.ads.beans.classes.Cidade</class>
 		<class>br.upf.casca.ads.beans.classes.Curso</class>
 		<class>br.upf.casca.ads.beans.classes.Diretor</class>
-		<class>br.upf.casca.ads.beans.classes.PergRespQuest</class>
 		<class>br.upf.casca.ads.beans.classes.Pessoa</class>
 		<class>br.upf.casca.ads.beans.classes.Professor</class>
-		<class>br.upf.casca.ads.beans.classes.Questionario</class>
 		<class>br.upf.casca.ads.beans.classes.Secretaria</class>
 		<class>br.upf.casca.ads.beans.classes.Turma</class>
-		<class>br.upf.casca.ads.beans.classes.Aula</class>
+		
 				
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/infoschool"/>

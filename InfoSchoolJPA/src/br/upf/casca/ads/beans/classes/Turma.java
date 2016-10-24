@@ -3,6 +3,7 @@ package br.upf.casca.ads.beans.classes;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -54,6 +55,14 @@ public class Turma implements Serializable {
 	@Length(max=30)	
 	@StringOptionsValid(message="Opção inválida no tipo da turma!", opcoes={"NORMAL", "PARTICULAR"})
 	private String tipoTurma;
+	
+	@NotNull(message="O horário de inicio não pode estar vazio!")
+	@Temporal(TemporalType.TIME)
+	private Date horarioInicio;
+	
+	@NotNull(message="O horário de fim não pode estar vazio!")
+	@Temporal(TemporalType.TIME)
+	private Date horarioFim;
 	
 	@ManyToOne(optional = false)
 	@NotNull(message="O Professor nao pode estar vazio")
@@ -196,9 +205,26 @@ public class Turma implements Serializable {
 		this.tipoTurma = tipoTurma;
 	}
 
+	public Date getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public void setHorarioInicio(Date horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+	public Date getHorarioFim() {
+		return horarioFim;
+	}
+
+	public void setHorarioFim(Date horarioFim) {
+		this.horarioFim = horarioFim;
+	}
+
 	public Turma(Integer id, String nome, Boolean segundaFeira, Boolean tercaFeira, Boolean quartaFeira,
 			Boolean quintaFeira, Boolean sextaFeira, Boolean sabado, Boolean manha, Boolean tarde, Boolean noite,
-			Curso curso, String tipoTurma, Professor professor, List<AlunosTurma> alunosTurma) {
+			Curso curso, String tipoTurma, Date horarioInicio, Date horarioFim, Professor professor,
+			List<AlunosTurma> alunosTurma) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -213,9 +239,13 @@ public class Turma implements Serializable {
 		this.noite = noite;
 		this.curso = curso;
 		this.tipoTurma = tipoTurma;
+		this.horarioInicio = horarioInicio;
+		this.horarioFim = horarioFim;
 		this.professor = professor;
 		this.alunosTurma = alunosTurma;
 	}
+
+
 
 	
 }

@@ -1,12 +1,16 @@
 package br.upf.casca.ads.beans.classes;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
 
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -41,6 +45,9 @@ public class Aula implements Serializable {
 	@NotNull(message="A turma nao pode estar vazia")
 	private Turma turma;
 	
+	@OneToMany(cascade = ALL, mappedBy = "provas", fetch = EAGER)
+	private List<Chamada> chamada;
+	
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,6 +58,8 @@ public class Aula implements Serializable {
 	public Aula(Integer id) {
 		super();
 		this.id = id;
+		data = new Date();
+		chamada = new ArrayList<Chamada>();
 	}
 
 	public Integer getId() {
@@ -85,13 +94,20 @@ public class Aula implements Serializable {
 		this.turma = turma;
 	}
 
-	public Aula(Integer id, Date data, String descricao, Turma turma) {
+	public List<Chamada> getChamada() {
+		return chamada;
+	}
+
+	public Aula(Integer id, Date data, String descricao, Turma turma, List<Chamada> chamada) {
 		super();
 		this.id = id;
 		this.data = data;
 		this.descricao = descricao;
 		this.turma = turma;
+		this.chamada = chamada;
 	}
 
-	
+
+
+	
 }
