@@ -20,6 +20,7 @@ import br.upf.casca.ads.beans.constraints.StringOptionsValid;
  */
 @Entity
 @Inheritance(strategy = JOINED)
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"usuario", "email"})})
 public abstract class Pessoa implements Serializable {
 
 	   

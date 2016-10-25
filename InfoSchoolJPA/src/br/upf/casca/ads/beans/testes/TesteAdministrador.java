@@ -20,12 +20,12 @@ public class TesteAdministrador {
 		data.setTime(new Date().getTime()-1);
 			
 		Administrador o = new Administrador();
-		o.setNome("admin");
+		o.setNome("Administrador");
 		o.setTelefone("85858585");
 		o.setEmail("sandro@gmail.com");
 		o.setEndereco("Rua Secreta");
 		o.setDataCadastro(data);
-		o.setSenha("123");
+		o.setSenha("1234");
 		o.setUsuario("adm");
 		o.setTipo("ADMINISTRADOR");
 		
