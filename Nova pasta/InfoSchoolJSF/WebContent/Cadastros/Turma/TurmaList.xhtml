@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>InfoSchool</title>
+</h:head>
+<h:body onload="#{turmaCrud.inicializarLista()}">
+	<h:form style="font-size: 13px" id="formLista">
+		<p:dataTable var="turma" value="#{turmaCrud.turmas}" paginator="true"
+			rows="10" rowsPerPageTemplate="5,10,15"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			currentPageReportTemplate="Listando de {startRecord} até {endRecord} de {totalRecords}.">
+			<f:facet name="header">
+				<p:spacer height="30"></p:spacer>
+				<div align="left" style="position: absolute; top: 20px; width: 95%;">
+					<p:outputLabel value="Listagem de Turmas"></p:outputLabel>
+				</div>
+			</f:facet>
+
+			<p:column headerText="Nome" sortBy="#{turma.nome}"
+				filterBy="#{turma.nome}" filterMatchMode="contains">
+				<h:outputText value="#{turma.nome}" />
+			</p:column>
+
+
+			<p:column headerText="Tipo da Turma" sortBy="#{turma.tipoTurma}"
+				filterBy="#{turma.tipoTurma}" filterMatchMode="contains">
+				<h:outputText value="#{turma.tipoTurma}" />
+			</p:column>
+
+			<p:column headerText="" width="40">
+				<p:commandButton action="#{turmaCrud.alterar(turma.id)}"
+					ajax="false" icon="ui-icon-pencil" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
+			</p:column>
+			<p:column headerText="" width="40">
+				<p:commandButton action="#{turmaCrud.excluir(turma.id)}"
+					ajax="false"
+					onclick="if (!confirm('Confirma a exclusão?')) return false"
+					icon="ui-icon-trash" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
+			</p:column>
+			<p:column headerText="" width="90">
+				<p:commandButton id="botaoVerAula" value="Ver Aula"
+					onclick="PF('dialogoVerAula').show();" ajax="true" />
+			</p:column>
+			
+			<p:column headerText="" width="90">
+				<p:commandButton action="#{aulaCrud.incluir(null, turma)}"
+					value="Nova Aula" ajax="false" icon="ui-icon-plusthick" />
+			</p:column>
+
+
+		</p:dataTable>
+		<p:commandButton id="botaoIncluir" value="Incluir"
+			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick"/>
+
+
+
+		<p:commandButton id="botaoFinalizarTurma"
+			value="Finalizar Turma e Emitir Relatório"
+			action="#{questionarioCrud.incluir}" 
+			rendered="#{session.getAttribute('tipo') eq 'PROFESSOR'}"/>
+
+	</h:form>
+
+	<p:dialog header="Aulas" widgetVar="dialogoVerAulas"
+		height="400" width="800" resizable="false" modal="true">
+
+		<iframe name="frameAulaList" id="frameAulaList"
+			src="../Aula/AulaList.xhtml"
+			style="width: 100%; height: 100%; background-color: #FFFFFF;"
+			frameborder="0" />
+	</p:dialog>
+
+
+</h:body>
+</html>

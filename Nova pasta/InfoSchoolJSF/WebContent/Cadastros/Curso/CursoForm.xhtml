@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>InfoSchool</title>
+</h:head>
+<h:body>
+	<h:form style="font-size: 13px" id="formEditar">
+		<p:growl></p:growl>
+		<p:focus for="nome" />
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:outputLabel value="Edição de Curso" />
+			</f:facet>
+
+			<p:outputLabel value="Nome:" for="nome" />
+			<p:inputText id="nome" size="50" value="#{cursoCrud.objeto.nome}" />
+
+			<p:outputLabel value="Turno Disponível: " />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.manha}" />
+				<h:outputText value="Manhã" />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.tarde}" />
+				<h:outputText value="Tarde" />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.noite}" />
+				<h:outputText value="Noite" />
+
+			</h:panelGrid>
+
+			<p:outputLabel value="Dia da Semana" />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.segundaFeira}" />
+				<h:outputText value="Segunda-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.tercaFeira}" />
+				<h:outputText value="Terça-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.quartaFeira}" />
+				<h:outputText value="Quarta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.quintaFeira}" />
+				<h:outputText value="Quinta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.sextaFeira}" />
+				<h:outputText value="Sexta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.sabado}" />
+				<h:outputText value="Sábado " />
+			</h:panelGrid>
+
+
+			<p:outputLabel value="Carga Horária:  " for="cargaHoraria" />
+			<p:inputText id="cargaHoraria" size="50"
+				value="#{cursoCrud.objeto.cargaHoraria}" />
+
+
+			<f:facet name="footer">
+				<p:commandButton value="Gravar" action="#{cursoCrud.gravar}"
+					ajax="false" />
+				<p:commandButton value="Cancelar" action="#{cursoCrud.cancelar}"
+					ajax="false" immediate="true" />
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>InfoSchool</title>
+</h:head>
+<h:body>
+	<h:form style="font-size: 13px" id="formEditar">
+		<p:growl></p:growl>
+		<p:focus for="nome" />
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:outputLabel value="Edição de Professor" />
+			</f:facet>
+
+			<p:outputLabel for="nome" value="Nome" />
+			<p:inputText id="nome" value="#{professorCrud.objeto.nome}" size="50" />
+
+			<p:outputLabel for="telefone" value="Telefone" />
+			<p:inputText id="telefone" value="#{professorCrud.objeto.telefone}"
+				size="50" />
+
+			<p:outputLabel for="email" value="Email" />
+			<p:inputText id="email" value="#{professorCrud.objeto.email}"
+				size="50" />
+
+			<p:outputLabel for="endereco" value="Endereco" />
+			<p:inputText id="endereco" value="#{professorCrud.objeto.endereco}"
+				size="50" />
+
+			<p:outputLabel value="Usuário:" for="usuario" />
+			<p:inputText id="usuario" size="50"
+				value="#{professorCrud.objeto.usuario}" />
+
+			<p:outputLabel value="Senha: " for="senha" />
+			<p:password id="senha" value="#{professorCrud.objeto.senha}" size="50" />
+ 
+
+						<p:outputLabel value="Turno Disponível: " />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.manha}" />
+				<h:outputText value="Manhã" />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.tarde}" />
+				<h:outputText value="Tarde" />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.noite}" />
+				<h:outputText value="Noite" />
+
+			</h:panelGrid>
+
+			<p:outputLabel value="Dia da Semana" />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.segundaFeira}" />
+				<h:outputText value="Segunda-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.tercaFeira}" />
+				<h:outputText value="Terça-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.quartaFeira}" />
+				<h:outputText value="Quarta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.quintaFeira}" />
+				<h:outputText value="Quinta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.sextaFeira}" />
+				<h:outputText value="Sexta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.sabado}" />
+				<h:outputText value="Sábado " />
+			</h:panelGrid>
+
+
+			<p:outputLabel value="Cursos Habilitados" />
+			<p:dataTable id="tabelaCursosHabilitados" rowIndexVar="rowIndex"
+				var="obj" value="#{professorCrud.objeto.cursosHabilitados}"
+				emptyMessage="Nenhum resultado encontrado">
+				<f:facet name="header">
+					<div align="left"
+						style="position: relative; height: 10px; top: 5px; width: 95%;">
+						<p:outputLabel value="Listagem de Cursos Habilitados"></p:outputLabel>
+					</div>
+					<div align="right"
+						style="position: relative; height: 10px; top: -12px; width: 95%;">
+						<p:commandButton id="botaoIncluir" value="Incluir" ajax="true"
+							actionListener="#{professorCrud.incluirItem}" update=":formItem"
+							onclick="PF('dialogoItens').show();" />
+					</div>
+				</f:facet>
+				<p:column headerText="Cursos">
+					<h:outputText value="#{obj.nome}" />
+				</p:column>
+				<p:column headerText="" width="60">
+					<p:commandButton
+						actionListener="#{professorCrud.excluirItem(rowIndex)}"
+						value="Excluir" ajax="true"
+						update=":formEditar:tabelaCursosHabilitados"
+						onclick="if (!confirm('Confirma a exclusão?')) return false">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+
+			<f:facet name="footer">
+				<p:commandButton value="Gravar" action="#{professorCrud.gravar}"
+					ajax="false" />
+				<p:commandButton value="Cancelar" action="#{professorCrud.cancelar}"
+					ajax="false" immediate="true" />
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+
+
+	<p:dialog header="Editar Cursos" widgetVar="dialogoItens" width="500"
+		resizable="false" modal="true">
+		<h:form id="formItem">
+			<p:growl />
+			<p:focus for="cursosHabilitados"></p:focus>
+			<h:panelGrid columns="2" style="margin-bottom:10px">
+				<p:commandLink value="Cursos"
+					onclick="parent.abrePopUp('/InfoSchoolJSF/faces/Cadastros/Curso/CursoList.xhtml',
+					'Cadastro de Cursos', 600, 800, true)" />
+				<p:autoComplete id="cursosHabilitados" size="30" dropdown="true"
+					multiple="false" forceSelection="true" var="obj"
+					itemLabel="#{obj.nome}" itemValue="#{obj}"
+					value="#{professorCrud.cursos}" converter="cursoConverter"
+					completeMethod="#{professorCrud.completeCurso}" />
+			</h:panelGrid>
+			<p:commandButton actionListener="#{professorCrud.gravarItem}"
+				validateClient="true" value="Gravar"
+				update=":formItem :formEditar:tabelaCursosHabilitados"
+				oncomplete="if (!args.validationFailed){ PF('dialogoItens').hide();}"
+				ajax="true">
+			</p:commandButton>
+			<p:commandButton actionListener="#{recebimentoCrud.cancelarItem}"
+				value="Cancelar" update=":formEditar:tabelaCursosHabilitados"
+				immediate="true" oncomplete="PF('dialogoItens').hide();" ajax="true" />
+		</h:form>
+
+	</p:dialog>
+</h:body>
+</html>

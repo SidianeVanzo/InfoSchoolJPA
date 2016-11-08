@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>InfoSchool</title>
+</h:head>
+<h:body>
+	<h:form style="font-size: 13px" id="formEditar">
+		<p:growl></p:growl>
+		<p:focus for="horarioInicio" />
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:outputLabel value="Chamada" />
+			</f:facet>
+
+			
+			<p:outputLabel value="Provas:" for="provas" />
+			<p:inputText id="provas" size="50"
+				value="#{chamadaCrud.objeto.provas}" />
+				
+			<p:outputLabel value="Notas das Provas:" for="notasProvas" />
+			<p:inputText id="notasProvas" size="50"
+				value="#{chamadaCrud.objeto.notasProvas}" />
+	
+			<p:outputLabel value="Comparecimento Aula:" for="comparecimentoAula" />
+			<p:inputText id="comparecimentoAula" size="50"
+				value="#{chamadaCrud.objeto.comparecimentoAula}" />
+				
+				
+				
+				
+				
+	
+				
+				
+				
+				
+				
+
+			<f:facet name="footer">
+				<p:commandButton value="Gravar" action="#{chamadaCrud.gravar}"
+					ajax="false" />
+				<p:commandButton value="Cancelar"
+					action="#{chamadaCrud.cancelar}" ajax="false" immediate="true" />
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+	
+	
+	
+	
+	
+	
+	
+</h:body>
+</html>

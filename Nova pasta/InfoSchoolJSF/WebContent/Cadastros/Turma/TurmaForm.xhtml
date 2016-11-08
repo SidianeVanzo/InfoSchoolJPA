@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>InfoSchool</title>
+</h:head>
+<h:body>
+
+	<h:form style="font-size: 13px" id="formEditar">
+		<p:growl></p:growl>
+		<p:focus for="nome" />
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:outputLabel value="Nova Turma" />
+			</f:facet>
+			<p:outputLabel value="Nome:" for="nome" />
+			<p:inputText id="nome" size="50" value="#{turmaCrud.objeto.nome}" />
+
+			<p:outputLabel value="Dia da Semana" />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.segundaFeira}" />
+				<h:outputText value="Segunda-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.tercaFeira}" />
+				<h:outputText value="Terça-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.quartaFeira}" />
+				<h:outputText value="Quarta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.quintaFeira}" />
+				<h:outputText value="Quinta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.sextaFeira}" />
+				<h:outputText value="Sexta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.sabado}" />
+				<h:outputText value="Sábado " />
+			</h:panelGrid>
+
+			<p:outputLabel value="Turno Disponível: " />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.manha}" />
+				<h:outputText value="Manhã" />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.tarde}" />
+				<h:outputText value="Tarde" />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.noite}" />
+				<h:outputText value="Noite" />
+
+			</h:panelGrid>
+
+			<p:outputLabel value="Horário de Início: " for="horarioInicio" />
+			<p:calendar id="horarioInicio" value="#{turmaCrud.objeto.horarioInicio}" 
+				pattern="HH:mm" timeOnly="true"  />
+				
+			<p:outputLabel value="Horário de Fim: " for="horarioFim" />
+			<p:calendar id="horarioFim" value="#{turmaCrud.objeto.horarioFim}" 
+				pattern="HH:mm" timeOnly="true"  />	
+
+			<p:outputLabel value="Curso:  " for="inputCurso" />
+			<p:autoComplete id="inputCurso" style="width:600px" dropdown="true"
+				multiple="false" forceSelection="true" var="obj"
+				itemLabel="#{obj.nome}" itemValue="#{obj}"
+				value="#{turmaCrud.objeto.curso}" converter="cursoConverter"
+				completeMethod="#{turmaCrud.completeCurso}" />
+
+			<p:outputLabel value="Tipo Turma:" for="tipoTurma" />
+			<p:selectOneMenu id="tipoTurma"
+					value="#{turmaCrud.objeto.tipoTurma}">
+					<f:selectItems value="#{turmaCrud.listaTipo}" />
+				</p:selectOneMenu>
+
+			<p:outputLabel value="Professor:  " for="inputProfessor" />
+			<p:autoComplete id="inputProfessor" style="width:600px"
+				dropdown="true" multiple="false" forceSelection="true" var="obj"
+				itemLabel="#{obj.nome}" itemValue="#{obj}"
+				value="#{turmaCrud.objeto.professor}" converter="professorConverter"
+				completeMethod="#{turmaCrud.completeProfessor}" />
+
+			<p:outputLabel value="Alunos" />
+
+
+			<p:dataTable id="tabelaAlunos" rowIndexVar="rowIndex" var="obj"
+				value="#{turmaCrud.objeto.alunosTurma}"
+				emptyMessage="Nenhum resultado encontrado">
+				<f:facet name="header">
+					<div align="left"
+						style="position: relative; height: 10px; top: 5px; width: 95%;">
+						<p:outputLabel value="Listagem de Alunos para a Turma"></p:outputLabel>
+					</div>
+					<div align="right"
+						style="position: relative; height: 10px; top: -12px; width: 95%;">
+						<p:commandButton id="botaoIncluir" value="Incluir" ajax="true"
+							actionListener="#{turmaCrud.incluirItem}" update=":formAlunos"
+							onclick="PF('dialogoAlunos').show();" />
+					</div>
+				</f:facet>
+				<p:column headerText="Aluno">
+					<h:outputText value="#{obj.alunos.nome}" />
+				</p:column>
+				<p:column headerText="Data de Inserção" style="text-align: right;">
+					<h:outputText value="#{obj.dataInsercaoAlunosTurma}">
+						<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="" width="60">
+					<p:commandButton
+						actionListener="#{turmaCrud.alterarItem(rowIndex)}"
+						value="Alterar" ajax="true" update=":formAlunos"
+						onclick="PF('dialogoAlunos').show();" />
+				</p:column>
+				<p:column headerText="" width="60">
+					<p:commandButton
+						actionListener="#{turmaCrud.excluirItem(rowIndex)}"
+						value="Excluir" ajax="true" 
+						update=":formEditar:tabelaAlunos"
+						onclick="if (!confirm('Confirma a exclusão?')) return false">
+					</p:commandButton>
+					</p:column>
+			</p:dataTable>
+
+
+			<f:facet name="footer">
+				<p:commandButton value="Gravar" action="#{turmaCrud.gravar}"
+					ajax="false" />
+				<p:commandButton value="Cancelar" action="#{turmaCrud.cancelar}"
+					ajax="false" immediate="true" />
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+
+
+
+
+	<p:dialog header="Editar Alunos" widgetVar="dialogoAlunos" width="500"
+		resizable="false" modal="true">
+		<h:form id="formAlunos">
+			<p:growl />
+			<p:focus for="alunos"></p:focus>
+			<h:panelGrid columns="2" style="margin-bottom:10px">
+				<p:commandLink value="Alunos"
+					onclick="parent.abrePopUp('/InfoSchoolJSF/faces/Cadastros/Alunos/AlunosList.xhtml',
+					'Cadastro de Alunos', 600, 800, true)" />
+				<p:autoComplete id="alunos" size="25" dropdown="true"
+					multiple="false" forceSelection="true" var="obj"
+					itemLabel="#{obj.nome}" itemValue="#{obj}"
+					value="#{turmaCrud.alunosTurma.alunos}" converter="alunosConverter"
+					completeMethod="#{turmaCrud.completeAlunos}" />
+
+				<p:outputLabel value="Data de Inserção:"
+					for="dataInsercaoAlunosTurma" />
+				<p:calendar id="dataInsercaoAlunosTurma"
+					value="#{turmaCrud.alunosTurma.dataInsercaoAlunosTurma}"
+					pattern="dd-MM-yyyy" mask="true" />
+
+			</h:panelGrid>
+			<p:commandButton actionListener="#{turmaCrud.gravarItem}"
+				validateClient="true" value="Gravar"
+				update=":formAlunos :formEditar:tabelaAlunos"
+				oncomplete="if (!args.validationFailed){ PF('dialogoAlunos').hide();}"
+				ajax="true">
+			</p:commandButton>
+			<p:commandButton actionListener="#{turmaCrud.cancelarItem}"
+				value="Cancelar" update=":formEditar:tabelaAlunos" immediate="true"
+				oncomplete="PF('dialogoAlunos').hide();" ajax="true" />
+		</h:form>
+	</p:dialog>
+
+
+</h:body>
+</html>

@@ -45,7 +45,7 @@ public class Aula implements Serializable {
 	@NotNull(message="A turma nao pode estar vazia")
 	private Turma turma;
 	
-	@OneToMany(cascade = ALL, mappedBy = "provas", fetch = EAGER)
+	@OneToMany(cascade = ALL, fetch = EAGER)
 	private List<Chamada> chamada;
 	
 
@@ -97,6 +97,10 @@ public class Aula implements Serializable {
 	public List<Chamada> getChamada() {
 		return chamada;
 	}
+	
+	public void setChamada(List<Chamada> chamada){
+		this.chamada = chamada;
+	}
 
 	public Aula(Integer id, Date data, String descricao, Turma turma, List<Chamada> chamada) {
 		super();
@@ -109,5 +113,6 @@ public class Aula implements Serializable {
 
 
 
-	
+
+	
 }

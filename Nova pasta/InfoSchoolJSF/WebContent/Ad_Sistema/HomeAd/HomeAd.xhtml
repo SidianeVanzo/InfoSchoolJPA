@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<style type="text/css">
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+</style>
+	<title>InfoSchool</title>
+</h:head>
+<h:body>
+	<h:body>
+		<p:layout fullPage="true">
+			<p:layoutUnit position="north" size="90" resizable="false">
+				<h:form style="font-size: 13px" id="formMenuBar">
+					<p:menubar>
+						<p:menuitem value="Diretor" url="/faces/Ad_Cadastros/Diretor/DiretorList.xhtml" target="centro" />
+						<p:menuitem value="Secretaria" url="/faces/Ad_Cadastros/Secretaria/SecretariaList.xhtml" target="centro" />
+						<p:menuitem value="Professor" url="/faces/Ad_Cadastros/Professor/ProfessorList.xhtml" target="centro" />
+						<p:menuitem value="Administrador" url="/faces/Ad_Cadastros/Administrador/AdministradorList.xhtml" target="centro" />
+						<p:menuitem value="Sair" action="#{loginAdControle.sair()}" />		
+					</p:menubar>
+						
+				</h:form>
+				
+				
+
+
+				<h:form style="font-size: 13px" target="centro">
+					<p:toolbar>
+						<p:toolbarGroup align="left">
+						<h:outputText style="font-size:14px;"
+						value="Bem vindo #{loginAdControle.usuarioLogado.nome}"> </h:outputText>
+						</p:toolbarGroup>
+					</p:toolbar>
+				</h:form>
+				
+			</p:layoutUnit>
+			
+			
+			
+			
+			<p:layoutUnit position="center">
+				<iframe name="centro" id="centro"
+					style="width: 100%; height: 90%; background-color: #FFFFFF;" 
+					frameborder="0" />	
+			
+			</p:layoutUnit>
+		</p:layout>
+		
+				
+		
+	</h:body>
+</h:body>
+</html>
