@@ -53,7 +53,7 @@ public class Turma implements Serializable {
 	private Curso curso;
 	
 	@Length(max=30)	
-	@StringOptionsValid(message="Opção inválida no tipo da turma!", opcoes={"NORMAL", "PARTICULAR"})
+	@StringOptionsValid(message="Opção inválida no tipo da turma!", opcoes={"NORMAL", "PARTICULAR", "FINALIZADA"})
 	private String tipoTurma;
 	
 	@NotNull(message="O horário de inicio não pode estar vazio!")
