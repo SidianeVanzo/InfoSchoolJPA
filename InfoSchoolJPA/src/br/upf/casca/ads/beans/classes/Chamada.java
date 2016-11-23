@@ -11,10 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Entity implementation class for Entity: Chamada
@@ -31,10 +29,10 @@ public class Chamada implements Serializable {
 	private Integer id;
 	
 	@Length(max=20, message="O tamanho máximo da descricao das provas é {max} caracteres")
-	@NotEmpty(message="A descricao das provas não pode estar vazia!")
+	//@NotEmpty(message="A descricao das provas não pode estar vazia!")
 	private String provas;
 	
-	@NotNull(message="A nota da prova deve ser preenchida")
+	//@NotNull(message="A nota da prova deve ser preenchida")
 	private Double notasProvas;
 	
 	//@Length(max=1, message="O tamanho máximo do comparimento de aulas é {max} caracteres")
