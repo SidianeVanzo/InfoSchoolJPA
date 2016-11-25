@@ -12,7 +12,6 @@ import org.hibernate.jpa.HibernateEntityManager;
 
 public class ConexaoJPA {
 
-	
 	//unica execução durante toda a duração do sistema por causa da palavra final
 	private static EntityManagerFactory factory;
 	

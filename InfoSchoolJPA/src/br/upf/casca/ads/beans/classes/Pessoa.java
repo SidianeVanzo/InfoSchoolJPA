@@ -20,9 +20,9 @@ import br.upf.casca.ads.beans.constraints.StringOptionsValid;
  */
 @Entity
 @Inheritance(strategy = JOINED)
+//com essa linha, não será possível cadastrar dois usuários ou e-mails iguais no bd
 @Table(uniqueConstraints={@UniqueConstraint(columnNames = {"usuario", "email"})})
 public abstract class Pessoa implements Serializable {
-
 	   
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "PessoaId")
@@ -54,6 +54,7 @@ public abstract class Pessoa implements Serializable {
 	private String senha;
 	
 	@Length(max=30)	
+	//com a Constraint StringOptionsValid, o tipo só poderá conter uma das opções informadas abaixo, não poderá ser uma opção diferente
 	@StringOptionsValid(message="Opção inválida no tipo!", opcoes={"ADMINISTRADOR", "SECRETARIA", "DIRETOR", "PROFESSOR"})
 	private String tipo;
 	
@@ -140,7 +141,5 @@ public abstract class Pessoa implements Serializable {
 		this.usuario = usuario;
 		this.senha = senha;
 		this.tipo = tipo;
-	}
-   
-	
+	}	
 }

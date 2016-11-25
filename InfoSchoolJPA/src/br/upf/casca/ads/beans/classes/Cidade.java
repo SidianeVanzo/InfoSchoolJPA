@@ -17,9 +17,9 @@ import br.upf.casca.ads.beans.constraints.UfValido;
  *
  */
 @Entity
+//com a linha abaixo, não será possível cadastrar duas cidades com o  mesmo nome
 @Table(uniqueConstraints={@UniqueConstraint(columnNames = {"nome"})})
 public class Cidade implements Serializable {
-
 	   
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "CidadeId")
@@ -32,10 +32,10 @@ public class Cidade implements Serializable {
 	
 	@NotEmpty(message="a UF é obrigatória!")
 	@Length(min=2, max=2, message="A UF deve ter dois caracteres!")
+	//com a linha abaixo, só será possível informar um UF que esteja nas opções informadas.
 	@UfValido(message="A UF deve ser válida!", opcoes={"AC", "AL","AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", 
 			"PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"})
 	private String uf;
-	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -77,5 +77,4 @@ public class Cidade implements Serializable {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
 }

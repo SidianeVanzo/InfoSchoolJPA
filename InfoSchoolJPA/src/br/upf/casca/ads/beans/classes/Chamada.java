@@ -19,10 +19,8 @@ import org.hibernate.validator.constraints.Length;
  *
  */
 @Entity
-
 public class Chamada implements Serializable {
 
-	   
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "ChamadaId")
 	@SequenceGenerator(name = "ChamadaId", sequenceName = "ChamadaId", allocationSize = 1)
@@ -78,7 +76,6 @@ public class Chamada implements Serializable {
 		this.notasProvas = notasProvas;
 	}   
 
-
 	public Boolean getComparecimentoAula() {
 		return comparecimentoAula;
 	}
@@ -103,8 +100,5 @@ public class Chamada implements Serializable {
 		this.comparecimentoAula = comparecimentoAula;
 		this.aluno = aluno;
 	}
-
-
-	
 	
 }

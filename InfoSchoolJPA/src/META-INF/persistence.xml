@@ -14,7 +14,6 @@
 		<class>br.upf.casca.ads.beans.classes.Secretaria</class>
 		<class>br.upf.casca.ads.beans.classes.Turma</class>
 		
-				
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/infoschool"/>
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
@@ -23,7 +22,6 @@
 			
 			<!--Linha para criar o banco de dados --> 
 			<property name="hibernate.hbm2ddl.auto" value="update"/> 
-			
 			
 		</properties>
 	</persistence-unit>

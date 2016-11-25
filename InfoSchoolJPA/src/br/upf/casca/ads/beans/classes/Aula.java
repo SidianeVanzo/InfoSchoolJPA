@@ -24,9 +24,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 @Entity
-
 public class Aula implements Serializable {
-
 	   
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "AulaId")
@@ -48,7 +46,6 @@ public class Aula implements Serializable {
 	@OneToMany(cascade = ALL, fetch = EAGER)
 	private List<Chamada> chamada;
 	
-
 	private static final long serialVersionUID = 1L;
 
 	public Aula() {
@@ -58,7 +55,9 @@ public class Aula implements Serializable {
 	public Aula(Integer id) {
 		super();
 		this.id = id;
+		//com a linha abaixo, na hora de escolher os alunos para a turma, a data ja estará com a data de hoje, mas é possível modificá-la
 		data = new Date();
+		//criando uma coleção de chamadas, onde podem ser retornadas todas as opções da chamada, inclusive os alunos.
 		chamada = new ArrayList<Chamada>();
 	}
 
@@ -110,9 +109,4 @@ public class Aula implements Serializable {
 		this.turma = turma;
 		this.chamada = chamada;
 	}
-
-
-
-
-	
 }

@@ -15,10 +15,10 @@ import static javax.persistence.FetchType.EAGER;
  *
  */
 @Entity
-
 public class Professor extends Pessoa implements Serializable {
 
 	@ManyToMany(fetch = EAGER)
+	//retorna uma lista de cursos, para que o professor escolha qual ele é habilitado para lecionar
 	private List<Curso> cursosHabilitados;
 	
 	private Boolean manha;
@@ -36,6 +36,7 @@ public class Professor extends Pessoa implements Serializable {
 
 	public Professor() {
 		super();
+		//retorna uma coleção de cursos, podendo ser usada qualquer informação do mesmo
 		cursosHabilitados = new ArrayList<>();
 	}   
   
@@ -155,8 +156,4 @@ public class Professor extends Pessoa implements Serializable {
 		this.sextaFeira = sextaFeira;
 		this.sabado = sabado;
 	}
-
-	
-   
-	
 }

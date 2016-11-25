@@ -1,5 +1,7 @@
 package br.upf.casca.ads.beans.testes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -17,8 +19,6 @@ public class TesteAlunos {
 	public void testNovo() {
 		
 		EntityManager em = ConexaoJPA.getEntityManager();
-		Date data = new Date();
-		data.setTime(new Date().getTime()-30);
 			
 		Alunos o = new Alunos();
 		o.setNome("Joao");
@@ -27,7 +27,12 @@ public class TesteAlunos {
 		o.setEndereco("Rua Ipiranga");
 		o.setCidade(em.find(Cidade.class, 1));
 		o.setCpf("028.726.240-58");
-		o.setDataNascimento(data);
+		try {
+			o.setDataNascimento(new SimpleDateFormat("dd/MM/yyyy").parse("15/05/1985"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		o.setRg("7665432887");
 		o.setTipoAluno("EM ESPERA");
 		

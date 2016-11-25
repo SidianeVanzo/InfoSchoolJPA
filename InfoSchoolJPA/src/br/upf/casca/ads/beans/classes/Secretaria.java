@@ -14,7 +14,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-
 public class Secretaria extends Pessoa implements Serializable{
 
 	@NotNull(message="O horário de inicio doexpediente não pode estar vazio!")
@@ -77,8 +76,4 @@ public class Secretaria extends Pessoa implements Serializable{
 		this.horarioFimExpediente = horarioFimExpediente;
 		this.formacao = formacao;
 	}
-	
-	
-	
-	
 }

@@ -40,14 +40,11 @@ public class TesteSecretaria {
 			e.printStackTrace();
 		}
 					
-				
 		o.setUsuario("maria");
 		o.setSenha("maria");
 		
 		em.getTransaction().begin();
 		em.persist(o);
-		em.getTransaction().commit();
-		
+		em.getTransaction().commit();	
 	}
-
 }

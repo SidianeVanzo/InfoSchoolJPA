@@ -15,9 +15,7 @@ import static javax.persistence.TemporalType.DATE;
  *
  */
 @Entity
-
 public class AlunosTurma implements Serializable {
-
 	   
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "AlunosTurmaId")
@@ -42,6 +40,7 @@ public class AlunosTurma implements Serializable {
 
 	public AlunosTurma() {
 		super();
+		//com a linha abaixo, na hora de escolher os alunos para a turma, a data ja estará com a data de hoje, mas é possível modificá-la
 		dataInsercaoAlunosTurma = new Date();
 	}
 	
@@ -85,6 +84,5 @@ public class AlunosTurma implements Serializable {
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
-	}
-   
+	}   
 }

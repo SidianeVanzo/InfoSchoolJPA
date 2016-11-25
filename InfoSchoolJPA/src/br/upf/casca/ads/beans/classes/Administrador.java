@@ -29,26 +29,17 @@ public class Administrador extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public Administrador() {
-		
-		super();
-		
+		super();		
 	}
-
-	
 
 	public Administrador(Date dataCadastro) {
 		super();
 		this.dataCadastro = dataCadastro;
 	}
 
-
-
 	public Administrador(Integer id) {
-		super(id);
-		
+		super(id);		
 	}
-
-
 
 	public Administrador(Integer id, String nome, String telefone, String email, String endereco, String usuario,
 			String senha, String tipo, Date dataCadastro) {
@@ -56,21 +47,11 @@ public class Administrador extends Pessoa implements Serializable {
 		this.dataCadastro = dataCadastro;
 	}
 
-
-
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
 
-
-
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-
-		
-	
-	
-	
-	
 }

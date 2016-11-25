@@ -16,9 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-
 public class Curso implements Serializable {
-
 	   
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "CursoId")
@@ -48,8 +46,6 @@ public class Curso implements Serializable {
 //	@NotNull(message="O campo Pessoa nao pode estar vazio")
 //	private Pessoa pessoa;
 	private static final long serialVersionUID = 1L;
-	
-
 
 	public Curso() {
 		super();
@@ -59,8 +55,6 @@ public class Curso implements Serializable {
 		super();
 		this.id = id;
 	}
-
-
 
 	public Integer getId() {
 		return this.id;
@@ -174,7 +168,4 @@ public class Curso implements Serializable {
 		this.sabado = sabado;
 		this.cargaHoraria = cargaHoraria;
 	}   
-
-	
-	
 }

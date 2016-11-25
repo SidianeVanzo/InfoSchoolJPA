@@ -12,10 +12,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = StringOptionsValidImpl.class)
 @Documented
-/**
- * Exemplo de uso 
- * @StringOptionsValid(message="Opção inválida!", opcoes={"Fone","Fax","Celular"} )
- */
+
 public @interface StringOptionsValid {
     String message() default "Opção inválida!";
     Class<?>[] groups() default {};

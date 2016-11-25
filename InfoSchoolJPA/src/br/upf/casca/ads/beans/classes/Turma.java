@@ -22,13 +22,8 @@ import static javax.persistence.GenerationType.SEQUENCE;
  *
  */
 @Entity
-
 public class Turma implements Serializable {
-    
-	
-	
-	
-	   
+       
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "TurmaId")
 	@SequenceGenerator(name = "TurmaId", sequenceName = "TurmaId", allocationSize = 1)
@@ -53,6 +48,7 @@ public class Turma implements Serializable {
 	private Curso curso;
 	
 	@Length(max=30)	
+	//com o StringOptionsValid, só será possível escolher uma das opções informadas abaixo para informar no tipoTurma
 	@StringOptionsValid(message="Opção inválida no tipo da turma!", opcoes={"NORMAL", "PARTICULAR", "FINALIZADA"})
 	private String tipoTurma;
 	
@@ -70,6 +66,7 @@ public class Turma implements Serializable {
 	
 	@OneToMany(cascade = ALL, mappedBy = "turma", fetch=FetchType.EAGER)
 	private List<AlunosTurma> alunosTurma;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Turma() {
@@ -81,8 +78,6 @@ public class Turma implements Serializable {
 		this.id = id;
 	}
 	
-	
-
 	public Integer getId() {
 		return this.id;
 	}

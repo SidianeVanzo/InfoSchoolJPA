@@ -13,7 +13,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 @Entity
-
 public class Diretor extends Pessoa implements Serializable {
 
 	@Length(max=40, message="O tamanho máximo da formação deve ser de {max} caracteres!")
@@ -43,9 +42,4 @@ public class Diretor extends Pessoa implements Serializable {
 		super(id, nome, telefone, email, endereco, usuario, senha, tipo);
 		this.formacao = formacao;
 	}
-	
-	
-	
-   
-	
 }

@@ -1,5 +1,7 @@
 package br.upf.casca.ads.beans.testes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -16,16 +18,18 @@ public class TesteAdministrador {
 	public void testNovo() {
 		
 		EntityManager em = ConexaoJPA.getEntityManager();
-		Date data = new Date();
-		data.setTime(new Date().getTime()-1);
 			
 		Administrador o = new Administrador();
 		o.setNome("Administrador");
 		o.setTelefone("85858585");
 		o.setEmail("sandro@gmail.com");
 		o.setEndereco("Rua Secreta");
-		o.setDataCadastro(data);
-		o.setSenha("1234");
+		try {
+			o.setDataCadastro(new SimpleDateFormat("dd/MM/yyyy").parse("15/11/2016"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		o.setSenha("123");
 		o.setUsuario("adm");
 		o.setTipo("ADMINISTRADOR");
 		

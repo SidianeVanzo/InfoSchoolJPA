@@ -24,6 +24,8 @@ import static javax.persistence.TemporalType.DATE;
  *
  */
 @Entity
+//linha abaixo utilizada para que não possam ser salvos no bd informações iguais às que já estão salvas
+//Ex.: cadastrar dois email iguais no bd não é permitido.
 @Table(uniqueConstraints={@UniqueConstraint(columnNames = {"email", "cpf", "rg"})})
 public class Alunos implements Serializable {
 
@@ -67,10 +69,10 @@ public class Alunos implements Serializable {
 	private Cidade cidade;
 	
 	@Length(max=30)	
+	//Utilizada a Constraint StringOptionsValid, para que sejam salvas no tipoAluno apenas as opções informadas
 	@StringOptionsValid(message="Opção inválida no tipo!", opcoes={"EM ESPERA", "CURSANDO", "CONCLUINTE", "CANCELADO"})
 	private String tipoAluno;
 	
-
 	private static final long serialVersionUID = 1L;
 
 	public Alunos() {
@@ -173,6 +175,4 @@ public class Alunos implements Serializable {
 	public void setTipoAluno(String tipoAluno) {
 		this.tipoAluno = tipoAluno;
 	}
-
-  
 }
